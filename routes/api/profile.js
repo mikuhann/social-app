@@ -109,6 +109,7 @@ router.get('/user/:user_id', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 // @route   DELETE api/profile/
 // @desc    Delete profile, user & posts
 // @access  Private
@@ -123,6 +124,7 @@ router.delete('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 // @route   PUT api/profile/experience
 // @desc    Add experience to profile
 // @access  Private
@@ -163,6 +165,27 @@ router.put('/experience', [ auth, [
     res.json(profile);
   } catch (err) {
     console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   DELETE api/profile/experience/:exp_id
+// @desc    Delete experience from profile
+// @access  Private
+router.delete('/experience/:exp_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    if (!profile) {
+      return res.status(400).json({ msg: 'There is no profile for this user' });
+    }
+    const index = profile.experience.findIndex((item) => item.id === req.params.exp_id);
+    if (index > -1) {
+      profile.experience.splice(index, 1);
+      await profile.save();
+    }
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
