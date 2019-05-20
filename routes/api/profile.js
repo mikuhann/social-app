@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
+const request = require('request');
+const config = require('config');
+const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
-const { check, validationResult } = require('express-validator/check');
 
 // @route   GET api/profile/me
 // @desc    Get currents user profile
@@ -250,6 +252,33 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
       await profile.save();
     }
     res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/profile/github/:username
+// @desc    get user repos from Github
+// @access  Public
+
+router.get('/github/:username', async (req, res) => {
+  try {
+    const options = {
+      uri: `https://api.github.com/users/${ req.params.username }/repos?per_page=5&sort=created:asc&
+      client_id=${config.get('githubClientId')}&client_secret=${config.get('githubClientSecret')}`,
+      method: 'GET',
+      headers: { 'user-agent':'node.js'}
+    };
+    request(options, (error, response, body) => {
+      if (error) {
+        console.log(error);
+      }
+      if (response.statusCode !== 200) {
+        res.status(404).json({ msg: 'No github repos found'});
+      }
+      res.json(JSON.parse(body));
+    })
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
