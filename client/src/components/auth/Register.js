@@ -24,10 +24,22 @@ const Register = () => {
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form" onSubmit={(event) => onSubmit(event)}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name" value={ name } onChange={ (event) => onChange(event)} required/>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={ name }
+            onChange={ (event) => onChange(event)}
+            required/>
         </div>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" value={ email } onChange={ (event) => onChange(event)} required/>
+          <input
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            value={ email }
+            onChange={ (event) => onChange(event)}
+            required/>
           <small className="form-text"
           >This site uses Gravatar so if you want a profile image, use a
             Gravatar email

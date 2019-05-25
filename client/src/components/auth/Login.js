@@ -19,7 +19,8 @@ const Login = () => {
       </div>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead"><i className="fas fa-user"></i> Sign into Your Account</p>
-      <form className="form" onSubmit={(event) => onSubmit(event)}>
+      <form className="form"
+            onSubmit={(event) => onSubmit(event)}>
         <div className="form-group">
           <input
             type="email"
