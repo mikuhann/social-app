@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 
-const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+const Dashboard = ({ getCurrentProfile, auth, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
-  return (
-    <div>
-      Dashboard
-    </div>
-  );
+  return loading && profile === null ? <Spinner /> :
+    <Fragment>
+      Profile
+    </Fragment>;
 };
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
