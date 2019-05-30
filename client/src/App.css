@@ -293,6 +293,9 @@ button {
   padding: 1rem;
   text-align: left;
 }
+.table td {
+  font-weight: normal;
+}
 
 .table th {
   background: var(--light-color);

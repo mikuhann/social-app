@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import DashboardLinks from './DashboardLinks';
+import ExperienceRow from './ExperienceRow'
+import EducationRow from "./EducationRow";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
+
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
   useEffect(() => {
@@ -19,6 +22,8 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
       {profile !== null ? (
         <Fragment>
           <DashboardLinks/>
+          <ExperienceRow experience={profile.experience}/>
+          <EducationRow education={profile.education}/>
         </Fragment>
       ) : (
         <Fragment>
