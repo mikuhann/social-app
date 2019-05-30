@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
+import DashboardLinks from './DashboardLinks';
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 
@@ -17,7 +18,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
       </p>
       {profile !== null ? (
         <Fragment>
-          has profile
+          <DashboardLinks/>
         </Fragment>
       ) : (
         <Fragment>
