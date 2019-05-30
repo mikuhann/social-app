@@ -59,11 +59,10 @@ const EditProfile = ({profile: { profile, loading }, getCurrentProfile, createPr
   return (
     <Fragment>
       <h1 className="large text-primary">
-        Create Your Profile
+        Edit Your Profile
       </h1>
       <p className="lead">
-        <i className="fas fa-user"/> Let's get some information to make your
-        profile stand out
+        <i className="fas fa-user"/> Edit your profile or go back to dashboard
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
