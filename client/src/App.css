@@ -400,6 +400,9 @@ button {
   grid-area: about;
   text-align: center;
 }
+.profile-about p {
+  text-align: left;
+}
 
 .profile-about .skills {
   display: flex;
