@@ -15,7 +15,7 @@ const ProfileAbout = ({profile: {
         </p>
         <div className="line"></div>
       </Fragment>}
-      <h2 className="text-primary">Skill Set</h2>
+      <h2 className="text-primary">Skills</h2>
       <div className="skills">
         {skills.map((skill, index) => (
           <div key={index} className="p-1"><i className="fa fa-check"/>{' '}{skill}</div>
