@@ -7,6 +7,7 @@ const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
+const Post = require('../../models/Post');
 
 // @route   GET api/profile/me
 // @desc    Get currents user profile
@@ -118,6 +119,7 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/', auth, async (req, res) => {
   try {
     //@todo remove users posts
+    await Post.deleteMany({user: req.user.id });
     await Profile.findOneAndRemove({ user: req.user.id });
     await User.findOneAndRemove({ _id: req.user.id });
     res.json({ msg: 'User deleted' });
@@ -198,7 +200,6 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 router.put('/education', [ auth, [
   check('school', 'School is required').not().isEmpty(),
   check('degree', 'Degree is required').not().isEmpty(),
-  check('fieldofstudy', 'This field is required').not().isEmpty(),
   check('from', 'From is required').not().isEmpty()
 ]], async (req, res) => {
   const errors = validationResult(req);
