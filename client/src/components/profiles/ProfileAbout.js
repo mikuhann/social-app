@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+
 
 const ProfileAbout = ({profile: {
   user: { name },
@@ -23,10 +23,6 @@ const ProfileAbout = ({profile: {
       </div>
     </div>
   );
-};
-
-ProfileAbout.propTypes = {
-
 };
 
 export default ProfileAbout;
