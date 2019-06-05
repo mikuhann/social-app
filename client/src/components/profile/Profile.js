@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import Spinner from '../layout/Spinner';
 import ProfileInfo from './ProfileInfo';
 import ProfileAbout from "../profiles/ProfileAbout";
-import { getProfileById } from "../../actions/profile";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
-
+import ProfileGithub from './ProfileGithub';
+import { getProfileById } from "../../actions/profile";
 
 const Profile = ({ match, getProfileById, profile: { profile, loading }, auth }) => {
   useEffect(() => {
@@ -49,8 +49,8 @@ const Profile = ({ match, getProfileById, profile: { profile, loading }, auth })
                 </Fragment>
               ) : (<h4>No education</h4>)}
             </div>
+            {profile.githubusername && <ProfileGithub username = { profile.githubusername }/>}
           </div>
-
         </Fragment>}
     </Fragment>
   );
